@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink-950: #06080d;
+  --color-ink-900: #0a0d14;
+  --color-ink-800: #10151f;
+  --color-ink-700: #182030;
+  --color-ink-600: #252e42;
+
+  --color-gold-200: #f7e7b4;
+  --color-gold-300: #f0d78c;
+  --color-gold-400: #e2bf5c;
+  --color-gold-500: #d4a73a;
+  --color-gold-600: #b8892b;
+  --color-gold-700: #8f6a1f;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-sweep: spin 6s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    @apply bg-ink-900 font-sans text-slate-200 antialiased;
+  }
+  h1, h2, h3, h4 { @apply font-display text-white; }
+  ::selection { @apply bg-gold-500 text-ink-950; }
+}
+
+@utility gold-text {
+  background: linear-gradient(120deg, var(--color-gold-200), var(--color-gold-500) 50%, var(--color-gold-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-300), var(--color-gold-500) 55%, var(--color-gold-600));
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+}
+
+/* Scroll reveal: the Reveal component toggles data-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal[data-visible="true"] { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
