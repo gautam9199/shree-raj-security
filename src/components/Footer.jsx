@@ -43,7 +43,7 @@ export default function Footer() {
         ))}
       </Container>
       <Container className="flex flex-col gap-3 border-t border-white/5 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-        <span>© {new Date().getFullYear()} {company.name}. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Kevalam IT Service. All rights reserved.</span>
         <a href="#top" className="hover:text-white">Back to top ↑</a>
       </Container>
     </footer>
